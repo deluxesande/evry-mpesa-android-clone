@@ -1,20 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from "react";
+import { SafeAreaView } from "react-native";
+import { StatusBar } from "expo-status-bar";
+
+import LoadingScreen from "@screens/LoadingScreen";
+import HomeScreen from "@screens/HomeScreen";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    const [isLoading, setIsLoading] = useState(true);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 1800); // Change to the number of milliseconds you want
+
+        return () => clearTimeout(timer); // This will clear the timer when the component unmounts
+    }, []);
+
+    return (
+        <SafeAreaView className="flex flex-1 bg-white items-center justify-center">
+            {isLoading ? <LoadingScreen /> : <HomeScreen />}
+            <StatusBar
+                animated={true}
+                backgroundColor="#61dafb"
+                barStyle="dark-content"
+                showHideTransition="fade"
+                hidden={false}
+            />
+        </SafeAreaView>
+    );
+}
