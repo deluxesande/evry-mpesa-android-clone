@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { View, Text, ActivityIndicator, StatusBar } from "react-native";
+import { s } from "react-native-wind";
 
 const LoadingScreen = ({ navigation }) => {
     useEffect(() => {
@@ -14,7 +15,7 @@ const LoadingScreen = ({ navigation }) => {
     return (
         <>
             <StatusBar barStyle="dark-content" />
-            <View className="flex-1 items-center justify-center">
+            <View style={s`flex-1 items-center justify-center`}>
                 <ActivityIndicator size="large" color="#0000ff" />
                 <Text>Loading...</Text>
             </View>
