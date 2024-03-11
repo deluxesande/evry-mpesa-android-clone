@@ -1,11 +1,24 @@
-import React from "react";
-import { ActivityIndicator, View } from "react-native";
+import React, { useEffect } from "react";
+import { View, Text, ActivityIndicator, StatusBar } from "react-native";
 
-const LoadingScreen = () => {
+const LoadingScreen = ({ navigation }) => {
+    useEffect(() => {
+        // Replace this with actual loading logic
+        const timer = setTimeout(() => {
+            navigation.replace("Home");
+        }, 2000); // 2 seconds delay
+
+        return () => clearTimeout(timer); // cleanup on unmount
+    }, [navigation]);
+
     return (
-        <View className="flex-1 justify-center items-center">
-            <ActivityIndicator size="large" color="#0000ff" />
-        </View>
+        <>
+            <StatusBar barStyle="dark-content" />
+            <View className="flex-1 items-center justify-center">
+                <ActivityIndicator size="large" color="#0000ff" />
+                <Text>Loading...</Text>
+            </View>
+        </>
     );
 };
 
