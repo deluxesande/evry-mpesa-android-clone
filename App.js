@@ -5,6 +5,8 @@ import { StatusBar } from "expo-status-bar";
 import LoadingScreen from "@screens/LoadingScreen";
 import HomeScreen from "@screens/HomeScreen";
 
+import Colors from "@styles/Colors";
+
 export default function App() {
     const [isLoading, setIsLoading] = useState(true);
 
@@ -17,11 +19,11 @@ export default function App() {
     }, []);
 
     return (
-        <SafeAreaView className="flex flex-1 bg-white items-center justify-center">
+        <SafeAreaView className="flex flex-1 bg-white justify-start items-start pt-14 px-5">
             {isLoading ? <LoadingScreen /> : <HomeScreen />}
             <StatusBar
                 animated={true}
-                backgroundColor="#61dafb"
+                backgroundColor={Colors.light_blue}
                 barStyle="dark-content"
                 showHideTransition="fade"
                 hidden={false}
