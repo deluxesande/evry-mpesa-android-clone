@@ -2,8 +2,18 @@ import { Text, View } from "react-native";
 import { s } from "react-native-wind";
 
 import Colors from "@styles/colors";
+import { useEffect } from "react";
 
-export default function WelcomeScreen() {
+export default function WelcomeScreen({ navigation }) {
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            navigation.replace("Main");
+        }, 3000); // 3000ms = 3s
+
+        // Clear timeout if the component is unmounted
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
         <View
             style={[
